@@ -36,6 +36,7 @@ enterKeyPressed = (event) => {
 }
 
 componentDidMount() {
+
   console.log("componentDidMount <App />");
   setTimeout(() => {
     console.log("Simulating incoming message");
@@ -46,6 +47,14 @@ componentDidMount() {
     // Calling setState will trigger a call to render() in App and all child components.
     this.setState({messages: messages})
   }, 3000);
+
+
+  this.socket = new WebSocket("ws://localhost:4000");
+  console.log("Connected to server.");
+
+
+
+
 }
 
 
