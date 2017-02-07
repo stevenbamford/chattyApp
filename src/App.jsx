@@ -5,9 +5,13 @@ import MessageList from './MessageList.jsx';
 class App extends Component {
 
   enterKeyPressed = (event) => {
-    const newMessage = {id: (this.state.messages.length + 1), username: this.state.currentUser.name, content: event.target.value };
-    const messages = this.state.messages.concat(newMessage);
-    this.setState({messages: messages});
+
+    if(event.key == "Enter"){
+
+      const newMessage = {id: (this.state.messages.length + 1), username: this.state.currentUser.name, content: event.target.value };
+      const messages = this.state.messages.concat(newMessage);
+      this.setState({messages: messages});
+  }
 }
 
   constructor(props){
