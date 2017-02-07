@@ -31,6 +31,7 @@ addMessage = (event) => {
     const newMessage = {id: (this.state.messages.length + 1), username: this.state.currentUser.name, content: event.target.value };
     const messages = this.state.messages.concat(newMessage);
     this.setState({messages: messages});
+    this.socket.send("User " + this.state.currentUser.name + " said " + event.target.value);
     event.target.value = "";
   }
 }
@@ -51,6 +52,8 @@ componentDidMount() {
 
   this.socket = new WebSocket("ws://localhost:4000");
   console.log("Connected to server.");
+
+
 
 }
 
