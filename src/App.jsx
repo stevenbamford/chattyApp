@@ -23,10 +23,10 @@ class App extends Component {
         }
       ]
     }
-    this.enterKeyPressed = this.enterKeyPressed.bind(this);
+    this.addMessage = this.addMessage.bind(this);
   }
 
-enterKeyPressed = (event) => {
+addMessage = (event) => {
   if(event.key == "Enter"){
     const newMessage = {id: (this.state.messages.length + 1), username: this.state.currentUser.name, content: event.target.value };
     const messages = this.state.messages.concat(newMessage);
@@ -52,9 +52,6 @@ componentDidMount() {
   this.socket = new WebSocket("ws://localhost:4000");
   console.log("Connected to server.");
 
-
-
-
 }
 
 
@@ -66,7 +63,7 @@ componentDidMount() {
           <a href="/" className="navbar-brand">Chatty</a>
         </nav>
         <MessageList messages={this.state.messages}/>
-        <Chatbar enterKeyPressed={this.enterKeyPressed} currentUser={this.state.currentUser.name}/>
+        <Chatbar addMessage={this.addMessage} currentUser={this.state.currentUser.name}/>
       </div>
     );
   }
