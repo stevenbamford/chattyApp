@@ -4,16 +4,6 @@ import MessageList from './MessageList.jsx';
 
 class App extends Component {
 
-  enterKeyPressed = (event) => {
-
-    if(event.key == "Enter"){
-
-      const newMessage = {id: (this.state.messages.length + 1), username: this.state.currentUser.name, content: event.target.value };
-      const messages = this.state.messages.concat(newMessage);
-      this.setState({messages: messages});
-  }
-}
-
   constructor(props){
 
     super(props);
@@ -33,7 +23,17 @@ class App extends Component {
         }
       ]
     }
+    this.enterKeyPressed = this.enterKeyPressed.bind(this);
   }
+
+enterKeyPressed = (event) => {
+  if(event.key == "Enter"){
+    const newMessage = {id: (this.state.messages.length + 1), username: this.state.currentUser.name, content: event.target.value };
+    const messages = this.state.messages.concat(newMessage);
+    this.setState({messages: messages});
+    event.target.value = "";
+  }
+}
 
 componentDidMount() {
   console.log("componentDidMount <App />");
