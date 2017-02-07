@@ -7,7 +7,7 @@ class Chatbar extends Component {
     if (event.key == "Enter"){
       console.log(event.target.value);
       this.props.enterKeyPressed(event);
-      this.
+      event.target.value = '';
     }
   }
 
