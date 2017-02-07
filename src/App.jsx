@@ -4,6 +4,12 @@ import MessageList from './MessageList.jsx';
 
 class App extends Component {
 
+  enterKeyPressed = (event) => {
+    const newMessage = {id: (this.state.messages.length + 1), username: this.state.currentUser.name, content: event.target.value };
+    const messages = this.state.messages.concat(newMessage);
+    this.setState({messages: messages});
+}
+
   constructor(props){
 
     super(props);
@@ -47,7 +53,7 @@ componentDidMount() {
           <a href="/" className="navbar-brand">Chatty</a>
         </nav>
         <MessageList messages={this.state.messages}/>
-        <Chatbar currentUser={this.state.currentUser.name}/>
+        <Chatbar enterKeyPressed={this.enterKeyPressed} currentUser={this.state.currentUser.name}/>
       </div>
     );
   }
