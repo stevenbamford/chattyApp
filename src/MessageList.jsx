@@ -1,6 +1,11 @@
 import React, {Component} from 'react';
 import Message from './Message.jsx';
 
+
+const colour = {
+  color:"green"
+}
+
 class MessageList extends Component {
   render() {
     console.log("Rendering <MessageList/>");
@@ -9,10 +14,11 @@ class MessageList extends Component {
       <main className="messages">
 
        {this.props.messages.map(message => {
+
           if(message.type === "incomingMessage"){
-            return <Message key={message.id} username={message.username} content={message.content}/>
+            return <Message color={message.color} key={message.id} username={message.username} content={message.content}/>
           }else{
-           return <div className="message system">
+           return <div key={message.id} className="message system">
             {message.content}
            </div>
           }

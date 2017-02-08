@@ -19,7 +19,7 @@ class App extends Component {
 
 addMessage = (event) => {
   if(event.key == "Enter"){
-    let postMessage = JSON.stringify({type: "postMessage", username: this.state.currentUser.name, content: event.target.value});
+    let postMessage = JSON.stringify({type: "postMessage", username: this.state.currentUser.name, content: event.target.value, color: this.state.currentUser.colour});
     this.socket.send(postMessage);
     event.target.value = "";
   }
@@ -29,7 +29,7 @@ enterUsername = (event) => {
   if(event.key == "Enter"){
       let postNotification = JSON.stringify({type: "postNotification", content: this.state.currentUser.name + " changed their name to " + event.target.value + "."})
       this.socket.send(postNotification);
-      this.setState({currentUser: {name: event.target.value}});
+      this.setState({currentUser: {name: event.target.value, colour: this.state.currentUser.colour}});
   }
 }
 
@@ -41,7 +41,7 @@ componentDidMount() {
   this.socket.onmessage = (event) => {
 
     const data = JSON.parse(event.data);
-    console.log(data);
+    console.log("Data stuff: ", data);
     switch(data.type) {
       case "incomingMessage":
         let messages = this.state.messages.concat(data);
@@ -54,6 +54,10 @@ componentDidMount() {
 
       case "numUsersOnline":
         this.setState({numUsersOnline: [data.content]});
+        break;
+      case "colour":
+        this.setState({currentUser: {name: this.state.currentUser.name, colour: {color: data.content}}});
+        console.log("Prop should be", this.state.currentUser.colour);
         break;
       default:
         // show an error in the console if the message type is unknown
