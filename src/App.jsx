@@ -26,11 +26,9 @@ addMessage = (event) => {
 
 enterUsername = (event) => {
   if(event.key == "Enter"){
-    if(event.target.value){
       let postNotification = JSON.stringify({type: "postNotification", content: this.state.currentUser.name + " changed their name to " + event.target.value + "."})
       this.socket.send(postNotification);
       this.setState({currentUser: {name: event.target.value}});
-    }
   }
 }
 
@@ -45,11 +43,12 @@ componentDidMount() {
     console.log(data);
     switch(data.type) {
       case "incomingMessage":
-        const messages = this.state.messages.concat(data);
+        let messages = this.state.messages.concat(data);
         this.setState({messages: messages});
         break;
       case "incomingNotification":
-        // handle incoming notification
+        let notifications = this.state.messages.concat(data);
+        this.setState({messages: notifications});
         break;
       default:
         // show an error in the console if the message type is unknown
