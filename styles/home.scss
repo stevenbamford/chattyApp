@@ -77,6 +77,12 @@ h1 {
       position: fixed;
       right: 0;
       top: 0;
+
+      .numUsers{
+        float:right;
+        line-height:60px;
+        margin-right:10px;
+      }
     }
 
     .navbar-brand {

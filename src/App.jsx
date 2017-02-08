@@ -10,7 +10,8 @@ class App extends Component {
     this.state = {
 
       currentUser: {name: "Anonymous"}, // optional. if currentUser is not defined, it means the user is Anonymous
-      messages: []
+      messages: [],
+      numUsersOnline: []
     }
     this.addMessage = this.addMessage.bind(this);
     this.enterUsername = this.enterUsername.bind(this);
@@ -50,6 +51,10 @@ componentDidMount() {
         let notifications = this.state.messages.concat(data);
         this.setState({messages: notifications});
         break;
+
+      case "numUsersOnline":
+        this.setState({numUsersOnline: [data.content]});
+        break;
       default:
         // show an error in the console if the message type is unknown
         throw new Error("Unknown event type " + data.type);
@@ -64,6 +69,7 @@ componentDidMount() {
       <div>
         <nav className="navbar">
           <a href="/" className="navbar-brand">Chatty</a>
+          <div className="numUsers"> {this.state.numUsersOnline} Users Online</div>
         </nav>
         <MessageList messages={this.state.messages}/>
         <Chatbar enterUsername={this.enterUsername} addMessage={this.addMessage} currentUser={this.state.currentUser.name}/>
