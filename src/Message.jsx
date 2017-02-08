@@ -9,9 +9,14 @@ class Message extends Component {
 
     <div style={this.props.color} className="message">
       <span className="message-username">{this.props.username}</span>
-      <span className="message-content">{this.props.content}</span>
+      { this.props.content.search(/\.jpg/) !== -1 ? (
+        <span className="message-content"><img className="img-msg" src={this.props.content}></img></span>
+        ) : (
+        <span className="message-content">{this.props.content}</span>
+        )}
     </div>
     );
   }
 }
 export default Message;
+

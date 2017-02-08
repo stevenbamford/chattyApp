@@ -61,6 +61,11 @@ h1 {
 
     .message-content {
       flex: 8;
+
+      .img-msg{
+        height:100px;
+        width:100px;
+      }
     }
 
     .message-username {

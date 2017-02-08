@@ -16,7 +16,7 @@ class MessageList extends Component {
        {this.props.messages.map(message => {
 
           if(message.type === "incomingMessage"){
-            return <Message color={message.color} key={message.id} username={message.username} content={message.content}/>
+              return <Message color={message.color} key={message.id} username={message.username} content={message.content} />
           }else{
            return <div key={message.id} className="message system">
             {message.content}
