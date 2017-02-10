@@ -35,7 +35,7 @@ enterUsername = (event) => {
 
 componentDidMount() {
 
-  this.socket = new WebSocket("ws://localhost:4000");
+  this.socket = new WebSocket("ws://10.10.40.216:4000");
   console.log("Connected to server.");
 
   this.socket.onmessage = (event) => {
