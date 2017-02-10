@@ -3,7 +3,6 @@ import React, {Component} from 'react';
 class Chatbar extends Component {
 
   render() {
-    console.log("Rendering <Chatbar/>");
     return (
       <footer className ="chatbar">
         <input className="chatbar-username" placeholder="Your Name (Optional)" onKeyPress={this.props.enterUsername} defaultValue={this.props.currentUser} />
